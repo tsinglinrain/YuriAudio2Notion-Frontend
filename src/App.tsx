@@ -1,30 +1,30 @@
-import { useState, useRef } from 'react'
+import { useState, useRef } from "react";
 
 function App() {
-  const [debugOpen, setDebugOpen] = useState(false)
-  const detailsRef = useRef<HTMLDetailsElement>(null)
+  const [debugOpen, setDebugOpen] = useState(false);
+  const detailsRef = useRef<HTMLDetailsElement>(null);
 
   const handleSummaryClick = (e: React.MouseEvent) => {
-    e.preventDefault() // 阻止默认展开行为
+    e.preventDefault(); // 阻止默认展开行为
 
-    const willOpen = !debugOpen
+    const willOpen = !debugOpen;
 
     // 1. 先禁用滚动
-    document.documentElement.style.overflow = 'hidden'
+    document.documentElement.style.overflow = "hidden";
 
     // 2. 更新 padding 状态
-    setDebugOpen(willOpen)
+    setDebugOpen(willOpen);
 
     // 3. 手动设置 details 的 open 属性（在 overflow:hidden 之后）
     if (detailsRef.current) {
-      detailsRef.current.open = willOpen
+      detailsRef.current.open = willOpen;
     }
 
     // 4. 动画结束后恢复滚动
     setTimeout(() => {
-      document.documentElement.style.overflow = ''
-    }, 300)
-  }
+      document.documentElement.style.overflow = "";
+    }, 300);
+  };
 
   return (
     <div className="min-h-screen bg-[#f9f9f9] relative">
@@ -34,8 +34,9 @@ function App() {
       <div className="fixed inset-0 bg-[linear-gradient(to_bottom,#f9f9f9_0%,transparent_35%,transparent_65%,#f9f9f9_100%)] pointer-events-none"></div>
 
       {/* 内容层 */}
-      <div className={`relative z-10 max-w-xl mx-auto px-5 pb-15 text-center min-h-screen flex flex-col transition-all duration-300 ${debugOpen ? 'pt-4' : 'pt-50'}`}>
-
+      <div
+        className={`relative z-10 max-w-xl mx-auto px-5 pb-15 text-center min-h-screen flex flex-col transition-all duration-300 ${debugOpen ? "pt-4" : "pt-50"}`}
+      >
         {/* 主要内容 */}
         <div className="flex-1">
           <div className="flex gap-4 justify-center items-center mb-10">
@@ -53,24 +54,28 @@ function App() {
 
           {/* 标题 */}
           <h1 className="text-4xl font-mono text-gray-800 mb-4">
-            <span className="text-purple-300">Yuri Audio Drama</span> to <span className="text-right font-semibold">Notion</span>
+            <span className="text-purple-300">Yuri Audio Drama</span> to{" "}
+            <span className="text-right font-semibold">Notion</span>
           </h1>
 
           {/* 说明 */}
           <p className="text-sm font-medium text-black mb-8">
-            If you see this page, the YuriAudio2Notion is successfully installed and working.
+            If you see this page, the YuriAudio2Notion is successfully installed
+            and working.
           </p>
 
           {/* 按钮组 */}
           <div className="flex gap-4 justify-center mb-8">
             <a
               href="https://yuri.coooo.de"
+              target="_blank"
               className="px-6 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition"
             >
               <span className="font-bold">Webhook for Notion</span>
             </a>
             <a
               href="https://yuriaudio.notion.site"
+              target="_blank"
               className="px-8 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition"
             >
               <span className="font-bold">Yuri Audio Share</span>
@@ -78,69 +83,85 @@ function App() {
           </div>
 
           {/* Debug Info */}
-          <details
-            ref={detailsRef}
-            className="text-left mb-8"
-          >
+          <details ref={detailsRef} className="text-left mb-8">
             <summary
               className="text-gray-500 text-sm cursor-pointer"
               onClick={handleSummaryClick}
-            >Debug Info</summary>
+            >
+              Debug Info
+            </summary>
             <pre className="bg-gray-100 p-4 rounded-lg mt-2 text-xs overflow-auto max-h-100">
-              {JSON.stringify({
-                version: '1.0.0',
-                nodeVersion: 'v20.x',
-                test: 'This is a test debug info.',
-                testArray: [1, 2, 3, 4, 5],
-                testObject: { a: 'A', b: 'B', c: 'C' },
-                vers1ion: '1.0.0',
-                node1Version: 'v20.x',
-                te1st: 'This is a test debug info.',
-                te1stArray: [1, 2, 3, 4, 5],
-                tes1tObject: { a: 'A', b: 'B', c: 'C' },
-                startTime: new Date().toISOString()
-              }, null, 2)}
+              {JSON.stringify(
+                {
+                  version: "1.0.0",
+                  nodeVersion: "v20.x",
+                  test: "This is a test debug info.",
+                  testArray: [1, 2, 3, 4, 5],
+                  testObject: { a: "A", b: "B", c: "C" },
+                  vers1ion: "1.0.0",
+                  node1Version: "v20.x",
+                  te1st: "This is a test debug info.",
+                  te1stArray: [1, 2, 3, 4, 5],
+                  tes1tObject: { a: "A", b: "B", c: "C" },
+                  startTime: new Date().toISOString(),
+                },
+                null,
+                2,
+              )}
             </pre>
           </details>
         </div>
 
         {/* 页脚 */}
         <footer className="text-black leading-relaxed mt-10">
-
           {/* GitHub 链接 */}
           <div className="flex gap-8 justify-center mb-1">
             <a
               href="https://github.com/tsinglinrain/YuriAudio2Notion"
+              target="_blank"
               className="px-6 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition"
             >
               <span className="font-bold">GitHub</span>
-              <span className="ml-2 inline-block bg-blue-400 text-white text-xs font-semibold px-2 py-0.5 rounded-full">Backen</span>
+              <span className="ml-2 inline-block bg-blue-400 text-white text-xs font-semibold px-2 py-0.5 rounded-full">
+                Backen
+              </span>
             </a>
             <a
               href="https://github.com/tsinglinrain/YuriAudio2Notion-Frontend"
+              target="_blank"
               className="px-6 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition"
             >
               <span className="font-bold">GitHub</span>
-              <span className="ml-2 inline-block bg-orange-600 text-white text-xs font-semibold px-2 py-0.5 rounded-full">Frontend</span>
+              <span className="ml-2 inline-block bg-orange-600 text-white text-xs font-semibold px-2 py-0.5 rounded-full">
+                Frontend
+              </span>
             </a>
           </div>
 
           <div className="flex gap-5 justify-center mb-2">
-            <a href="https://github.com/tsinglinrain" target="_blank" rel="noopener noreferrer">
-              <img src="public/GitHub.svg" alt="GitHub" className="w-5 h-5 inline-block hover:opacity-70 transition" />
+            <a
+              href="https://github.com/tsinglinrain"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                src="public/GitHub.svg"
+                alt="GitHub"
+                className="w-5 h-5 inline-block hover:opacity-70 transition"
+              />
             </a>
           </div>
           <p className="mt-1 font-black text-sm whitespace-nowrap">
             Only for Yuri Audio Drama.
           </p>
           <p className="mt-1 font-black text-sm whitespace-nowrap">
-            Made with <code>TypeScript</code>, <code>React</code>, <code>Vite</code> and <code>Notion API</code>.
+            Made with <code>TypeScript</code>, <code>React</code>,{" "}
+            <code>Vite</code> and <code>Notion API</code>.
           </p>
         </footer>
-
       </div>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
