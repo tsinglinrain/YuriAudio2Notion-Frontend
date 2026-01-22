@@ -1,34 +1,145 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState, useRef } from 'react'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [debugOpen, setDebugOpen] = useState(false)
+  const detailsRef = useRef<HTMLDetailsElement>(null)
+
+  const handleSummaryClick = (e: React.MouseEvent) => {
+    e.preventDefault() // 阻止默认展开行为
+
+    const willOpen = !debugOpen
+
+    // 1. 先禁用滚动
+    document.documentElement.style.overflow = 'hidden'
+
+    // 2. 更新 padding 状态
+    setDebugOpen(willOpen)
+
+    // 3. 手动设置 details 的 open 属性（在 overflow:hidden 之后）
+    if (detailsRef.current) {
+      detailsRef.current.open = willOpen
+    }
+
+    // 4. 动画结束后恢复滚动
+    setTimeout(() => {
+      document.documentElement.style.overflow = ''
+    }, 300)
+  }
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="min-h-screen bg-[#f9f9f9] relative">
+      {/* 带渐变遮罩的网格背景 - fixed 固定不随内容滚动 */}
+      <div className="fixed inset-0 bg-[linear-gradient(rgba(200,200,200,0.3)_1px,transparent_1px),linear-gradient(90deg,rgba(200,200,200,0.3)_1px,transparent_1px)] bg-size-[40px_40px] pointer-events-none"></div>
+      {/* 上下渐变遮罩 */}
+      <div className="fixed inset-0 bg-[linear-gradient(to_bottom,#f9f9f9_0%,transparent_35%,transparent_65%,#f9f9f9_100%)] pointer-events-none"></div>
+
+      {/* 内容层 */}
+      <div className={`relative z-10 max-w-xl mx-auto px-5 pb-15 text-center min-h-screen flex flex-col transition-all duration-300 ${debugOpen ? 'pt-4' : 'pt-50'}`}>
+
+        {/* 主要内容 */}
+        <div className="flex-1">
+          <div className="flex gap-4 justify-center items-center mb-10">
+            <img
+              src="src/assets/react.svg"
+              alt="Yuri Audio Drama to Notion Logo"
+              className="w-24 h-24 animate-[spin_3s_linear_infinite]"
+            />
+            <img
+              src="public/vite.svg"
+              alt="Yuri Audio Drama to Notion Logo"
+              className="w-24 h-24 animate-[pulse_3s_ease-in-out_infinite]"
+            />
+          </div>
+
+          {/* 标题 */}
+          <h1 className="text-4xl font-mono text-gray-800 mb-4">
+            <span className="text-purple-300">Yuri Audio Drama</span> to <span className="text-right font-semibold">Notion</span>
+          </h1>
+
+          {/* 说明 */}
+          <p className="text-sm font-medium text-black mb-8">
+            If you see this page, the YuriAudio2Notion is successfully installed and working.
+          </p>
+
+          {/* 按钮组 */}
+          <div className="flex gap-4 justify-center mb-8">
+            <a
+              href="https://yuri.coooo.de"
+              className="px-6 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition"
+            >
+              <span className="font-bold">Webhook for Notion</span>
+            </a>
+            <a
+              href="https://yuriaudio.notion.site"
+              className="px-8 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition"
+            >
+              <span className="font-bold">Yuri Audio Share</span>
+            </a>
+          </div>
+
+          {/* Debug Info */}
+          <details
+            ref={detailsRef}
+            className="text-left mb-8"
+          >
+            <summary
+              className="text-gray-500 text-sm cursor-pointer"
+              onClick={handleSummaryClick}
+            >Debug Info</summary>
+            <pre className="bg-gray-100 p-4 rounded-lg mt-2 text-xs overflow-auto max-h-100">
+              {JSON.stringify({
+                version: '1.0.0',
+                nodeVersion: 'v20.x',
+                test: 'This is a test debug info.',
+                testArray: [1, 2, 3, 4, 5],
+                testObject: { a: 'A', b: 'B', c: 'C' },
+                vers1ion: '1.0.0',
+                node1Version: 'v20.x',
+                te1st: 'This is a test debug info.',
+                te1stArray: [1, 2, 3, 4, 5],
+                tes1tObject: { a: 'A', b: 'B', c: 'C' },
+                startTime: new Date().toISOString()
+              }, null, 2)}
+            </pre>
+          </details>
+        </div>
+
+        {/* 页脚 */}
+        <footer className="text-black leading-relaxed mt-10">
+
+          {/* GitHub 链接 */}
+          <div className="flex gap-8 justify-center mb-1">
+            <a
+              href="https://github.com/tsinglinrain/YuriAudio2Notion"
+              className="px-6 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition"
+            >
+              <span className="font-bold">GitHub</span>
+              <span className="ml-2 inline-block bg-blue-400 text-white text-xs font-semibold px-2 py-0.5 rounded-full">Backen</span>
+            </a>
+            <a
+              href="https://github.com/tsinglinrain/YuriAudio2Notion-Frontend"
+              className="px-6 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition"
+            >
+              <span className="font-bold">GitHub</span>
+              <span className="ml-2 inline-block bg-orange-600 text-white text-xs font-semibold px-2 py-0.5 rounded-full">Frontend</span>
+            </a>
+          </div>
+
+          <div className="flex gap-5 justify-center mb-2">
+            <a href="https://github.com/tsinglinrain" target="_blank" rel="noopener noreferrer">
+              <img src="public/GitHub.svg" alt="GitHub" className="w-5 h-5 inline-block hover:opacity-70 transition" />
+            </a>
+          </div>
+          <p className="mt-1 font-black text-sm whitespace-nowrap">
+            Only for Yuri Audio Drama.
+          </p>
+          <p className="mt-1 font-black text-sm whitespace-nowrap">
+            Made with <code>TypeScript</code>, <code>React</code>, <code>Vite</code> and <code>Notion API</code>.
+          </p>
+        </footer>
+
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    </div>
   )
 }
 
