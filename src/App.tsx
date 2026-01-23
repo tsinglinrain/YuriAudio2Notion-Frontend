@@ -1,6 +1,12 @@
 import { useState, useRef } from "react";
 import { Atom, Zap } from "lucide-react";
-import { SiGithub, SiReact, SiVite, SiTypescript, SiNotion } from "@icons-pack/react-simple-icons";
+import {
+  SiGithub,
+  SiReact,
+  SiVite,
+  SiTypescript,
+  SiNotion,
+} from "@icons-pack/react-simple-icons";
 
 function App() {
   const [debugOpen, setDebugOpen] = useState(false);
@@ -151,8 +157,14 @@ function App() {
             Only for Yuri Audio Drama.
           </p>
           <p className="mt-1 font-black text-sm whitespace-nowrap">
-            Made with <code>TypeScript</code> <SiTypescript size={15} className="inline-block align-middle" />, <code>React</code> <SiReact size={15} className="inline-block align-middle" />,{" "}
-            <code>Vite</code> <SiVite size={15} className="inline-block align-middle" /> and <code>Notion API</code> <SiNotion size={15} className="inline-block align-middle" />.
+            Made with <code>TypeScript</code>{" "}
+            <SiTypescript size={15} className="inline-block align-middle" />,{" "}
+            <code>React</code>{" "}
+            <SiReact size={15} className="inline-block align-middle" />,{" "}
+            <code>Vite</code>{" "}
+            <SiVite size={15} className="inline-block align-middle" /> and{" "}
+            <code>Notion API</code>{" "}
+            <SiNotion size={15} className="inline-block align-middle" />.
           </p>
         </footer>
       </div>
