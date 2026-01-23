@@ -1,4 +1,6 @@
 import { useState, useRef } from "react";
+import { Atom, Zap } from "lucide-react";
+import { SiGithub, SiReact, SiVite, SiTypescript, SiNotion } from "@icons-pack/react-simple-icons";
 
 function App() {
   const [debugOpen, setDebugOpen] = useState(false);
@@ -29,9 +31,9 @@ function App() {
   return (
     <div className="min-h-screen bg-[#f9f9f9] relative">
       {/* 带渐变遮罩的网格背景 - fixed 固定不随内容滚动 */}
-      <div className="fixed inset-0 bg-[linear-gradient(rgba(200,200,200,0.3)_1px,transparent_1px),linear-gradient(90deg,rgba(200,200,200,0.3)_1px,transparent_1px)] bg-size-[40px_40px] pointer-events-none"></div>
+      <div className="fixed inset-0 z-0 bg-[linear-gradient(rgba(200,200,200,0.3)_1px,transparent_1px),linear-gradient(90deg,rgba(200,200,200,0.3)_1px,transparent_1px)] bg-size-[40px_40px] pointer-events-none"></div>
       {/* 上下渐变遮罩 */}
-      <div className="fixed inset-0 bg-[linear-gradient(to_bottom,#f9f9f9_0%,transparent_35%,transparent_65%,#f9f9f9_100%)] pointer-events-none"></div>
+      <div className="fixed inset-0 z-0 bg-[linear-gradient(to_bottom,#f9f9f9_0%,transparent_35%,transparent_65%,#f9f9f9_100%)] pointer-events-none"></div>
 
       {/* 内容层 */}
       <div
@@ -40,15 +42,13 @@ function App() {
         {/* 主要内容 */}
         <div className="flex-1">
           <div className="flex gap-4 justify-center items-center mb-10">
-            <img
-              src="src/assets/react.svg"
-              alt="Yuri Audio Drama to Notion Logo"
-              className="w-24 h-24 animate-[spin_3s_linear_infinite]"
+            <Atom
+              size={96}
+              className="text-blue-500 hover:animate-spin transition"
             />
-            <img
-              src="public/vite.svg"
-              alt="Yuri Audio Drama to Notion Logo"
-              className="w-24 h-24 animate-[pulse_3s_ease-in-out_infinite]"
+            <Zap
+              size={96}
+              className="text-yellow-500 animate-[pulse_3s_ease-in-out_infinite]"
             />
           </div>
 
@@ -90,7 +90,7 @@ function App() {
             >
               Debug Info
             </summary>
-            <pre className="bg-gray-100 p-4 rounded-lg mt-2 text-xs overflow-auto max-h-100">
+            <pre className="bg-gray-100 p-4 rounded-lg mt-2 text-sm overflow-auto max-h-80">
               {JSON.stringify(
                 {
                   version: "1.0.0",
@@ -113,7 +113,7 @@ function App() {
         </div>
 
         {/* 页脚 */}
-        <footer className="text-black leading-relaxed mt-10">
+        <footer className="leading-relaxed mt-10">
           {/* GitHub 链接 */}
           <div className="flex gap-8 justify-center mb-1">
             <a
@@ -144,19 +144,15 @@ function App() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <img
-                src="public/GitHub.svg"
-                alt="GitHub"
-                className="w-5 h-5 inline-block hover:opacity-70 transition"
-              />
+              <SiGithub size={20} className="hover:opacity-70 transition" />
             </a>
           </div>
-          <p className="mt-1 font-black text-sm whitespace-nowrap">
+          <p className="text-blue-950 mt-1 font-black text-sm whitespace-nowrap">
             Only for Yuri Audio Drama.
           </p>
           <p className="mt-1 font-black text-sm whitespace-nowrap">
-            Made with <code>TypeScript</code>, <code>React</code>,{" "}
-            <code>Vite</code> and <code>Notion API</code>.
+            Made with <code>TypeScript</code> <SiTypescript size={15} className="inline-block align-middle" />, <code>React</code> <SiReact size={15} className="inline-block align-middle" />,{" "}
+            <code>Vite</code> <SiVite size={15} className="inline-block align-middle" /> and <code>Notion API</code> <SiNotion size={15} className="inline-block align-middle" />.
           </p>
         </footer>
       </div>
