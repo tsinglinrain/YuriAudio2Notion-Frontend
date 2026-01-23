@@ -6,6 +6,7 @@ import {
   SiVite,
   SiTypescript,
   SiNotion,
+  SiTailwindcss,
 } from "@icons-pack/react-simple-icons";
 
 function App() {
@@ -43,11 +44,11 @@ function App() {
 
       {/* 内容层 */}
       <div
-        className={`relative z-10 max-w-xl mx-auto px-5 pb-15 text-center min-h-screen flex flex-col transition-all duration-300 ${debugOpen ? "pt-4" : "pt-50"}`}
+        className={`relative z-10 max-w-xl mx-auto px-5 pb-5 text-center min-h-screen flex flex-col transition-all duration-300 ${debugOpen ? "pt-4" : "pt-40"}`}
       >
         {/* 主要内容 */}
         <div className="flex-1">
-          <div className="flex gap-4 justify-center items-center mb-10">
+          <div className="flex gap-4 justify-center items-center mb-2">
             <Atom
               size={96}
               className="text-blue-500 hover:animate-spin transition"
@@ -59,32 +60,35 @@ function App() {
           </div>
 
           {/* 标题 */}
-          <h1 className="text-4xl font-mono text-gray-800 mb-4">
-            <span className="text-purple-300">Yuri Audio Drama</span> to{" "}
+          <h1 className="text-4xl text-gray-800 mb-4">
+            <span className="text-purple-300 font-mono">Yuri Audio Drama</span>{" "}
+            <span className="text-black font-normal">to</span>{" "}
             <span className="text-right font-semibold">Notion</span>
           </h1>
 
           {/* 说明 */}
-          <p className="text-sm font-medium text-black mb-8">
+          <p className="text-sm font-medium text-zinc-500 mb-5">
             If you see this page, the YuriAudio2Notion is successfully installed
             and working.
           </p>
 
           {/* 按钮组 */}
-          <div className="flex gap-4 justify-center mb-8">
+          <div className="flex gap-4 justify-center mb-5">
             <a
               href="https://yuri.coooo.de"
               target="_blank"
-              className="px-6 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition"
+              rel="noopener noreferrer"
+              className="inline-flex items-center px-6 py-2 bg-gray-100 text-gray-700 text-sm rounded-lg border-2 border-solid hover:bg-gray-200 transition"
             >
               <span className="font-bold">Webhook for Notion</span>
             </a>
             <a
               href="https://yuriaudio.notion.site"
               target="_blank"
-              className="px-8 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition"
+              rel="noopener noreferrer"
+              className="inline-flex items-center px-6 py-2 bg-gray-100 text-gray-700 text-sm rounded-lg border-2 border-solid hover:bg-gray-200 transition"
             >
-              <span className="font-bold">Yuri Audio Share</span>
+              <span className="font-bold">Yuri Audio CV Share | Baihe</span>
             </a>
           </div>
 
@@ -125,20 +129,22 @@ function App() {
             <a
               href="https://github.com/tsinglinrain/YuriAudio2Notion"
               target="_blank"
-              className="px-6 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition"
+              rel="noopener noreferrer"
+              className="inline-flex items-center px-4 py-2 bg-gray-100 text-gray-700 text-sm rounded-lg border-2 border-solid hover:bg-gray-200 transition"
             >
-              <span className="font-bold">GitHub</span>
-              <span className="ml-2 inline-block bg-blue-400 text-white text-xs font-semibold px-2 py-0.5 rounded-full">
+              <span className="font-bold">Repo</span>
+              <span className="ml-2 bg-blue-400 text-white text-xs font-semibold px-2 py-0.5 rounded-full">
                 Backen
               </span>
             </a>
             <a
               href="https://github.com/tsinglinrain/YuriAudio2Notion-Frontend"
               target="_blank"
-              className="px-6 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition"
+              rel="noopener noreferrer"
+              className="inline-flex items-center px-4 py-2 bg-gray-100 text-gray-700 text-sm rounded-lg border-2 border-solid hover:bg-gray-200 transition"
             >
-              <span className="font-bold">GitHub</span>
-              <span className="ml-2 inline-block bg-orange-600 text-white text-xs font-semibold px-2 py-0.5 rounded-full">
+              <span className="font-bold">Repo</span>
+              <span className="ml-2 bg-orange-600 text-white text-xs font-semibold px-2 py-0.5 rounded-full">
                 Frontend
               </span>
             </a>
@@ -163,7 +169,11 @@ function App() {
             <SiReact size={15} className="inline-block align-middle" />,{" "}
             <code>Vite</code>{" "}
             <SiVite size={15} className="inline-block align-middle" /> and{" "}
-            <code>Notion API</code>{" "}
+            <code>Tailwind CSS</code>{" "}
+            <SiTailwindcss size={15} className="inline-block align-middle" />.
+          </p>
+          <p className="mt-1 font-black text-sm whitespace-nowrap mb-5">
+            Data is stored in <code>Notion</code>{" "}
             <SiNotion size={15} className="inline-block align-middle" />.
           </p>
         </footer>
