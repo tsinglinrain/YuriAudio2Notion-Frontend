@@ -8,6 +8,7 @@ import {
   SiNotion,
   SiTailwindcss,
 } from '@icons-pack/react-simple-icons';
+import { DebugPanel } from './components';
 
 function App() {
   const [debugOpen, setDebugOpen] = useState(false);
@@ -90,73 +91,69 @@ function App() {
             <summary className="cursor-pointer text-sm text-gray-500" onClick={handleSummaryClick}>
               Debug Info
             </summary>
-            <pre className="mt-2 max-h-80 overflow-auto rounded-lg bg-gray-100 p-4 text-sm">
-              {JSON.stringify(
-                {
-                  version: '1.0.0',
-                  nodeVersion: 'v20.x',
-                  test: 'This is a test debug info.',
-                  testArray: [1, 2, 3, 4, 5],
-                  testObject: { a: 'A', b: 'B', c: 'C' },
-                  vers1ion: '1.0.0',
-                  node1Version: 'v20.x',
-                  te1st: 'This is a test debug info.',
-                  te1stArray: [1, 2, 3, 4, 5],
-                  tes1tObject: { a: 'A', b: 'B', c: 'C' },
-                  startTime: new Date().toISOString(),
-                },
-                null,
-                2,
-              )}
-            </pre>
+            <div className="mt-2">
+              <DebugPanel />
+            </div>
           </details>
         </div>
 
         {/* 页脚 */}
         <footer className="mt-10 leading-relaxed">
           {/* GitHub 链接 */}
-          <div className="mb-1 flex justify-center gap-8">
-            <a
-              href="https://github.com/tsinglinrain/YuriAudio2Notion"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center rounded-lg bg-gray-100 px-4 py-2 text-sm text-gray-700 ring-2 ring-gray-500 transition hover:bg-gray-200 hover:ring-gray-400 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none"
-            >
-              <span className="font-bold">Repo</span>
-              <span className="ml-2 rounded-full bg-blue-400 px-2 py-0.5 text-xs font-semibold text-white">
-                Backen
-              </span>
-            </a>
-            <a
-              href="https://github.com/tsinglinrain/YuriAudio2Notion-Frontend"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center rounded-lg bg-gray-100 px-4 py-2 text-sm text-gray-700 ring-2 ring-gray-500 transition hover:bg-gray-200 hover:ring-gray-400 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none"
-            >
-              <span className="font-bold">Repo</span>
-              <span className="ml-2 rounded-full bg-orange-600 px-2 py-0.5 text-xs font-semibold text-white">
-                Frontend
-              </span>
-            </a>
+          <div className="mb-1 flex items-center">
+            <div className="flex-1"></div>
+            <div className="flex gap-8">
+              <a
+                href="https://github.com/tsinglinrain/YuriAudio2Notion"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex h-8 items-center justify-center rounded-lg bg-gray-100 px-4 py-2 text-sm text-gray-700 ring-2 ring-gray-500 transition hover:bg-gray-200 hover:ring-gray-400 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none"
+              >
+                <span className="font-bold">Repo</span>
+                <span className="ml-2 rounded-full bg-blue-400 px-2 py-0.5 text-xs font-semibold text-white">
+                  Backend
+                </span>
+              </a>
+              <a
+                href="https://github.com/tsinglinrain/YuriAudio2Notion-Frontend"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex h-8 items-center justify-center rounded-lg bg-gray-100 px-4 py-2 text-sm text-gray-700 ring-2 ring-gray-500 transition hover:bg-gray-200 hover:ring-gray-400 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none"
+              >
+                <span className="font-bold">Repo</span>
+                <span className="ml-2 rounded-full bg-orange-600 px-2 py-0.5 text-xs font-semibold text-white">
+                  Frontend
+                </span>
+              </a>
+            </div>
+            <div className="flex flex-1 justify-end">
+              <a
+                href="https://github.com/tsinglinrain"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex h-8 items-center justify-center transition hover:opacity-70"
+              >
+                <SiGithub size={20} />
+              </a>
+            </div>
           </div>
 
-          <div className="mb-2 flex justify-center gap-5">
-            <a href="https://github.com/tsinglinrain" target="_blank" rel="noopener noreferrer">
-              <SiGithub size={20} className="transition hover:opacity-70" />
-            </a>
-          </div>
+          {/* 版权信息 */}
           <p className="mt-1 text-sm font-black whitespace-nowrap text-blue-950">
             Only for Yuri Audio Drama.
           </p>
           <p className="mt-1 text-sm font-black whitespace-nowrap">
-            Made with <code>TypeScript</code>{' '}
-            <SiTypescript size={15} className="inline-block align-middle" />, <code>React</code>{' '}
-            <SiReact size={15} className="inline-block align-middle" />, <code>Vite</code>{' '}
-            <SiVite size={15} className="inline-block align-middle" /> and <code>Tailwind CSS</code>{' '}
+            Made with <code className="bg-gray-200 text-amber-700">TypeScript</code>{' '}
+            <SiTypescript size={15} className="inline-block align-middle" /> ,{' '}
+            <code className="bg-gray-200 text-amber-700">React</code>{' '}
+            <SiReact size={15} className="inline-block align-middle" /> ,{' '}
+            <code className="bg-gray-200 text-amber-700">Vite</code>{' '}
+            <SiVite size={15} className="inline-block align-middle" /> and{' '}
+            <code className="bg-gray-200 text-amber-700">Tailwind CSS</code>{' '}
             <SiTailwindcss size={15} className="inline-block align-middle" />.
           </p>
           <p className="mt-1 mb-5 text-sm font-black whitespace-nowrap">
-            Data is stored in <code>Notion</code>{' '}
+            Data is stored in <code className="bg-gray-200 text-amber-700">Notion</code>{' '}
             <SiNotion size={15} className="inline-block align-middle" />.
           </p>
         </footer>

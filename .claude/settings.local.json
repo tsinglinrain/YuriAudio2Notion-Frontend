@@ -1,7 +1,9 @@
 {
   "permissions": {
     "allow": [
-      "WebFetch(domain:rss.soyet.icu)"
+      "WebFetch(domain:rss.soyet.icu)",
+      "Bash(npx prettier:*)",
+      "Bash(npm install:*)"
     ]
   }
 }
