@@ -6,13 +6,13 @@ import { useEffect, useRef } from 'react';
 import { Play, Square, Trash2, Circle } from 'lucide-react';
 import type { LogEntry, ConnectionStatus } from '../types';
 
-interface LogViewerProps {
+type LogViewerProps = {
   logs: LogEntry[];
   status: ConnectionStatus;
   onConnect: () => void;
   onDisconnect: () => void;
   onClear: () => void;
-}
+};
 
 const levelColors: Record<string, string> = {
   DEBUG: 'text-gray-400',

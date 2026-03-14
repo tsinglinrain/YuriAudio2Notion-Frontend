@@ -72,15 +72,15 @@ function App() {
               href="https://yuri.coooo.de"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center rounded-lg border-2 border-solid bg-gray-100 px-6 py-2 text-sm text-gray-700 shadow-md shadow-gray-500/50 transition hover:bg-gray-200"
+              className="inline-flex w-63 items-center justify-center rounded-lg border-2 border-solid bg-gray-100 px-6 py-2 text-sm text-gray-700 shadow-md shadow-gray-500/50 transition hover:bg-gray-200"
             >
-              <span className="font-bold">Webhook for Notion</span>
+              <span className="font-bold">Webhook for Data Source</span>
             </a>
             <a
               href="https://yuriaudio.notion.site"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center rounded-lg border-2 border-solid bg-gray-100 px-6 py-2 text-sm text-gray-700 shadow-md shadow-gray-500/50 transition hover:bg-gray-200"
+              className="inline-flex w-63 items-center justify-center rounded-lg border-2 border-solid bg-gray-100 px-6 py-2 text-sm text-gray-700 shadow-md shadow-gray-500/50 transition hover:bg-gray-200"
             >
               <span className="font-bold">Yuri Audio CV Share | Baihe</span>
             </a>
