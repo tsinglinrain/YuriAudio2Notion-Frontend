@@ -9,7 +9,6 @@ export type HealthResponse = {
   status: 'healthy' | 'unhealthy';
   version: string;
   environment: string;
-  uptime: string;
   uptime_seconds: number;
   log_subscribers: number;
 };

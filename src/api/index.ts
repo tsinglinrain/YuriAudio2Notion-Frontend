@@ -10,11 +10,16 @@ import type { HealthResponse } from '../types';
  */
 export const API_BASE_URL = import.meta.env.PROD ? '' : '';
 
+const API_KEY = encodeURIComponent(import.meta.env.VITE_API_KEY || '');
+
 /**
  * 获取健康状态
  */
 export async function fetchHealth(): Promise<HealthResponse> {
-  const response = await fetch(`${API_BASE_URL}/health`);
+  const url = API_KEY
+    ? `${API_BASE_URL}/health?api_key=${API_KEY}`
+    : `${API_BASE_URL}/health`;
+  const response = await fetch(url);
   if (!response.ok) {
     throw new Error(`HTTP ${response.status}: ${response.statusText}`);
   }
@@ -25,5 +30,6 @@ export async function fetchHealth(): Promise<HealthResponse> {
  * 获取 SSE 日志流 URL
  */
 export function getLogStreamUrl(): string {
-  return `${API_BASE_URL}/logs/stream`;
+  const base = `${API_BASE_URL}/logs/stream`;
+  return API_KEY ? `${base}?api_key=${API_KEY}` : base;
 }

@@ -2,7 +2,7 @@
  * 健康状态展示组件
  */
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import { Activity, RefreshCw } from 'lucide-react';
 import type { HealthResponse } from '../types';
 import { fetchHealth } from '../api';
@@ -33,6 +33,19 @@ export function HealthStatus() {
 
   const statusColor = health?.status === 'healthy' ? 'text-green-500' : 'text-red-500';
   const statusBg = health?.status === 'healthy' ? 'bg-green-100' : 'bg-red-100';
+
+  const uptimeStr = useMemo(() => {
+    if (!health) return '';
+    const s = health.uptime_seconds;
+    const d = Math.floor(s / 86400);
+    const h = Math.floor((s % 86400) / 3600);
+    const m = Math.floor((s % 3600) / 60);
+    const sec = s % 60;
+    if (d > 0) return `${d}d ${h}h ${m}m ${sec}s`;
+    if (h > 0) return `${h}h ${m}m ${sec}s`;
+    if (m > 0) return `${m}m ${sec}s`;
+    return `${sec}s`;
+  }, [health]);
 
   return (
     <div className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm">
@@ -69,7 +82,7 @@ export function HealthStatus() {
           <div className="font-mono text-gray-700">{health.environment}</div>
 
           <div className="text-gray-500">Uptime</div>
-          <div className="font-mono text-gray-700">{health.uptime}</div>
+          <div className="font-mono text-gray-700">{uptimeStr}</div>
 
           <div className="text-gray-500">Log Subscribers</div>
           <div className="font-mono text-gray-700">{health.log_subscribers}</div>
