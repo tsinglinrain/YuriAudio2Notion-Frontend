@@ -1,6 +1,15 @@
 services:
   frontend:
-    build: .
+    image: 'tsinglinrain/yuriaudio2notion-frontend:latest'
+    container_name: fanjiao-frontend
     ports:
       - "7501:80"
+    environment:
+      - VITE_API_KEY=${VITE_API_KEY}
     restart: unless-stopped
+    networks:
+      - yuri-net
+
+networks:
+  yuri-net:
+    external: true
